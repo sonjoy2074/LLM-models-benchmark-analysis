@@ -1,0 +1,66 @@
+ Message 
+                                                                                                                                                              
+ Extract coding-related problems from this text and solve them: ​                                                                                              
+ Solve all question                                                                                                                                           
+ ​                                                                                                                                                             
+ 1. Find the Height of a Binary Tree                                                                                                                          
+ Write a function to find the height of a binary tree. The height of a binary tree is the number of                                                           
+ edges in the longest path from the root to a leaf node. For an empty tree, the height is -1.                                                                 
+                                                                                                                                                              
+ 2. Check if Two Binary Trees are Identical                                                                                                                   
+ Write a function to check if two binary trees are identical. Two binary trees are identical if they                                                          
+ have the same structure and their corresponding nodes have the same values.                                                                                  
+                                                                                                                                                              
+ 3. Find the Lowest Common Ancestor (LCA)                                                                                                                     
+ Given a binary tree and two nodes, find the lowest common ancestor (LCA) of the two nodes.                                                                   
+ The LCA of two nodes is the deepest node that is an ancestor of both nodes.                                                                                  
+                                                                                                                                                              
+                                                                                                                                                              
+ . Return each question followed by its solution.                                                                                                             
+                                                                                                                                                              
+
+ Response (3.6s) 
+                                                                                                                                                              
+ 1. Find the Height of a Binary Tree                                                                                                                          
+ ```python                                                                                                                                                    
+ class TreeNode:                                                                                                                                              
+     def __init__(self, value=0, left=None, right=None):                                                                                                      
+         self.value = value                                                                                                                                   
+         self.left = left                                                                                                                                     
+         self.right = right                                                                                                                                   
+                                                                                                                                                              
+ def height_of_binary_tree(node):                                                                                                                             
+     if node is None:                                                                                                                                         
+         return -1                                                                                                                                            
+     left_height = height_of_binary_tree(node.left)                                                                                                           
+     right_height = height_of_binary_tree(node.right)                                                                                                         
+     return max(left_height, right_height) + 1                                                                                                                
+ ```                                                                                                                                                          
+                                                                                                                                                              
+ 2. Check if Two Binary Trees are Identical                                                                                                                   
+ ```python                                                                                                                                                    
+ def are_identical_trees(tree1, tree2):                                                                                                                       
+     if tree1 is None and tree2 is None:                                                                                                                      
+         return True                                                                                                                                          
+     if tree1 is not None and tree2 is not None:                                                                                                              
+         return tree1.value == tree2.value and \                                                                                                              
+                are_identical_trees(tree1.left, tree2.left) and \                                                                                             
+                are_identical_trees(tree1.right, tree2.right)                                                                                                 
+     return False                                                                                                                                             
+ ```                                                                                                                                                          
+                                                                                                                                                              
+ 3. Find the Lowest Common Ancestor (LCA)                                                                                                                     
+ ```python                                                                                                                                                    
+ def lowest_common_ancestor(root, node1, node2):                                                                                                              
+     if root is None:                                                                                                                                         
+         return None                                                                                                                                          
+     if root == node1 or root == node2:                                                                                                                       
+         return root                                                                                                                                          
+     left = lowest_common_ancestor(root.left, node1, node2)                                                                                                   
+     right = lowest_common_ancestor(root.right, node1, node2)                                                                                                 
+     if left is not None and right is not None:                                                                                                               
+         return root                                                                                                                                          
+     return left if left is not None else right                                                                                                               
+ ```                                                                                                                                                          
+                                                                                                                                                              
+

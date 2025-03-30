@@ -1,0 +1,128 @@
+ Message 
+                                                                                                                                                             
+ Extract coding-related problems from this text and solve them: ​                                                                                             
+ Solve all question                                                                                                                                          
+ ​                                                                                                                                                            
+ 1. Find the Height of a Binary Tree                                                                                                                         
+ Write a function to find the height of a binary tree. The height of a binary tree is the number of                                                          
+ edges in the longest path from the root to a leaf node. For an empty tree, the height is -1.                                                                
+                                                                                                                                                             
+ 2. Check if Two Binary Trees are Identical                                                                                                                  
+ Write a function to check if two binary trees are identical. Two binary trees are identical if they                                                         
+ have the same structure and their corresponding nodes have the same values.                                                                                 
+                                                                                                                                                             
+ 3. Find the Lowest Common Ancestor (LCA)                                                                                                                    
+ Given a binary tree and two nodes, find the lowest common ancestor (LCA) of the two nodes.                                                                  
+ The LCA of two nodes is the deepest node that is an ancestor of both nodes.                                                                                 
+                                                                                                                                                             
+                                                                                                                                                             
+ . Return each question followed by its solution.                                                                                                            
+                                                                                                                                                             
+
+ Response (4.8s) 
+                                                                                                                                                             
+ 1. Find the Height of a Binary Tree                                                                                                                         
+ ```python                                                                                                                                                   
+ class Node:                                                                                                                                                 
+     def __init__(self, value, left=None, right=None):                                                                                                       
+         self.value = value                                                                                                                                  
+         self.left = left                                                                                                                                    
+         self.right = right                                                                                                                                  
+                                                                                                                                                             
+ def find_height(node):                                                                                                                                      
+     if node is None:                                                                                                                                        
+         return -1                                                                                                                                           
+     else:                                                                                                                                                   
+         left_height = find_height(node.left)                                                                                                                
+         right_height = find_height(node.right)                                                                                                              
+         return max(left_height, right_height) + 1                                                                                                           
+                                                                                                                                                             
+ # Example usage:                                                                                                                                            
+ # Create a binary tree:                                                                                                                                     
+ #       1                                                                                                                                                   
+ #      / \                                                                                                                                                  
+ #     2   3                                                                                                                                                 
+ #    / \                                                                                                                                                    
+ #   4   5                                                                                                                                                   
+ root = Node(1)                                                                                                                                              
+ root.left = Node(2)                                                                                                                                         
+ root.right = Node(3)                                                                                                                                        
+ root.left.left = Node(4)                                                                                                                                    
+ root.left.right = Node(5)                                                                                                                                   
+ print(find_height(root))  # Output: 2                                                                                                                       
+ ```                                                                                                                                                         
+                                                                                                                                                             
+ 2. Check if Two Binary Trees are Identical                                                                                                                  
+ ```python                                                                                                                                                   
+ class Node:                                                                                                                                                 
+     def __init__(self, value, left=None, right=None):                                                                                                       
+         self.value = value                                                                                                                                  
+         self.left = left                                                                                                                                    
+         self.right = right                                                                                                                                  
+                                                                                                                                                             
+ def are_identical(tree1, tree2):                                                                                                                            
+     if tree1 is None and tree2 is None:                                                                                                                     
+         return True                                                                                                                                         
+     if tree1 is None or tree2 is None:                                                                                                                      
+         return False                                                                                                                                        
+     if tree1.value != tree2.value:                                                                                                                          
+         return False                                                                                                                                        
+     return are_identical(tree1.left, tree2.left) and are_identical(tree1.right, tree2.right)                                                                
+                                                                                                                                                             
+ # Example usage:                                                                                                                                            
+ # Create two identical binary trees:                                                                                                                        
+ #       1                                                                                                                                                   
+ #      / \                                                                                                                                                  
+ #     2   3                                                                                                                                                 
+ #    / \                                                                                                                                                    
+ #   4   5                                                                                                                                                   
+ tree1 = Node(1)                                                                                                                                             
+ tree1.left = Node(2)                                                                                                                                        
+ tree1.right = Node(3)                                                                                                                                       
+ tree1.left.left = Node(4)                                                                                                                                   
+ tree1.left.right = Node(5)                                                                                                                                  
+                                                                                                                                                             
+ tree2 = Node(1)                                                                                                                                             
+ tree2.left = Node(2)                                                                                                                                        
+ tree2.right = Node(3)                                                                                                                                       
+ tree2.left.left = Node(4)                                                                                                                                   
+ tree2.left.right = Node(5)                                                                                                                                  
+ print(are_identical(tree1, tree2))  # Output: True                                                                                                          
+ ```                                                                                                                                                         
+                                                                                                                                                             
+ 3. Find the Lowest Common Ancestor (LCA)                                                                                                                    
+ ```python                                                                                                                                                   
+ class Node:                                                                                                                                                 
+     def __init__(self, value, left=None, right=None):                                                                                                       
+         self.value = value                                                                                                                                  
+         self.left = left                                                                                                                                    
+         self.right = right                                                                                                                                  
+                                                                                                                                                             
+ def find_lca(root, node1, node2):                                                                                                                           
+     if root is None:                                                                                                                                        
+         return None                                                                                                                                         
+     if root.value == node1 or root.value == node2:                                                                                                          
+         return root                                                                                                                                         
+     left_lca = find_lca(root.left, node1, node2)                                                                                                            
+     right_lca = find_lca(root.right, node1, node2)                                                                                                          
+     if left_lca and right_lca:                                                                                                                              
+         return root                                                                                                                                         
+     return left_lca if left_lca else right_lca                                                                                                              
+                                                                                                                                                             
+ # Example usage:                                                                                                                                            
+ # Create a binary tree:                                                                                                                                     
+ #       1                                                                                                                                                   
+ #      / \                                                                                                                                                  
+ #     2   3                                                                                                                                                 
+ #    / \                                                                                                                                                    
+ #   4   5                                                                                                                                                   
+ root = Node(1)                                                                                                                                              
+ root.left = Node(2)                                                                                                                                         
+ root.right = Node(3)                                                                                                                                        
+ root.left.left = Node(4)                                                                                                                                    
+ root.left.right = Node(5)                                                                                                                                   
+ lca = find_lca(root, 4, 5)                                                                                                                                  
+ print(lca.value)  # Output: 2                                                                                                                               
+ ```                                                                                                                                                         
+                                                                                                                                                             
+
